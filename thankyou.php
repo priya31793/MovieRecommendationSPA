@@ -16,7 +16,14 @@ if (!$success) {
 
 }
 else {
-	echo 'update.php';
+if( isset($_POST['title'] ) && isset( $_POST['duration'] )&& isset( $_POST['release_date'] )&& isset( $_POST['genre'] )&& isset( $_POST['synopsis'] ) )
+{
+    $txt= $_POST['title'].' , '.$_POST['duration'] . ','.$_POST['release_date'] .','.$_POST['genre'] .','.$_POST['synopsis']. '/'. PHP_EOL; 
+    file_put_contents('fields.txt', $txt, FILE_APPEND);
+}
+	$myfile = fopen("fields.txt", "r") or die("Unable to open file!");
+echo fread($myfile,filesize("fields.txt"));
+fclose($myfile);
 }
 
 
